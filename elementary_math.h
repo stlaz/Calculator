@@ -1,4 +1,10 @@
-
+/**
+ * @file elementary_math.h
+ * 
+ * @brief The header file with mathematical functions
+ * @author Stanislav Laznicka
+ */
+ 
 namespace CubeSoft {
 	
 	namespace Calculator {
@@ -13,3 +19,4 @@ namespace CubeSoft {
 		double OP_LOGARITHM(double, double, double);
 	}
 }
+/*** End of file elementary_math.h ***/
