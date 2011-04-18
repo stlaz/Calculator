@@ -246,6 +246,19 @@ namespace CubeSoft {
 
 			return this->root;
 		}
+		
+		
+		
+		/**
+		 * Shortcut for Parser::getValue()->getValue()
+		 *
+         * @return double result
+         */
+		double Parser::getValue() {
+			return this->getRoot()->getValue();
+		}
+		
+		
 
 
 		/**

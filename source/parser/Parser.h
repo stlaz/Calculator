@@ -34,6 +34,7 @@ namespace CubeSoft {
 				
 				void buildTree();
 				Item* getRoot();
+				double getValue();
             private:
                 void close();
 
