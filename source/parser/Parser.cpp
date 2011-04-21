@@ -18,7 +18,9 @@ namespace CubeSoft {
 
 	namespace Calculator {
 		
-
+		/**
+		 * Constant precedency table
+		 */
 		const map<eOperator, int> Parser::precedencyTable = Parser::createPrecedencyTable();
 
 		Parser::Parser() {
@@ -41,6 +43,11 @@ namespace CubeSoft {
 		}
 
 
+		/**
+		 * Removes all input passed so far, allowing to request parsing of another equation
+		 * 
+         * @return Parser*	providing fluid interface
+         */
 		Parser* Parser::clearInput() {
 			vector<Item*>::iterator inputI;
 
@@ -55,6 +62,12 @@ namespace CubeSoft {
 		}
 
 		
+		/**
+		 * Adds simple literal value
+		 * 
+         * @param value
+         * @return Parser*	providing fluid interface
+         */
 		Parser* Parser::addInput(double value) {
 			ItemLiteral *item = new ItemLiteral(value);
 			
@@ -62,7 +75,14 @@ namespace CubeSoft {
 
 			return this;
 		}
+
 		
+		/**
+		 * Adds operator based on the identifying enum item
+		 * 
+         * @param eOperator operator
+         * @return Parser*	providing fluid interface
+         */
 		Parser* Parser::addInput(eOperator op) {
 			ItemOperator *item = new ItemOperator(op);
 			
@@ -72,6 +92,15 @@ namespace CubeSoft {
 		}
 
 
+
+		/**
+		 * Internal function, returns next item in the sequence matching given type
+		 *
+         * @param iter
+         * @param end
+         * @param type
+         * @return Item*
+         */
 		Item* Parser::getNextOfType(itemIterator iter, itemIterator end, eType type)
 		{
 			for(iter++ ; iter != end; iter++ )
@@ -84,6 +113,15 @@ namespace CubeSoft {
 		}
 
 
+		/**
+		 * Turns a sequence of 2-3 (binary X unary operator) items into a tree of items,
+		 * replacing it with 1 expression in the sequence,
+		 * setting it as the root
+		 *
+         * @param starter
+         * @param iter
+         * @return itemIterator
+         */
 		itemIterator Parser::addItem(Item* starter, itemIterator iter) {
 			ItemExpression *item;
 			
@@ -143,7 +181,10 @@ namespace CubeSoft {
 			return iter;
 		}
 
-		
+
+		/**
+		 * Builds a tree out of the stored sequence of items
+         */
 		void Parser::buildTree() {
 			itemIterator i;
 			size_t previousSize = 0;
@@ -194,12 +235,30 @@ namespace CubeSoft {
 		}
 
 
+		/**
+		 * Returns the root of tree
+		 *
+         * @return Item*
+         */
 		Item* Parser::getRoot() {
 			if( this->root == NULL )
 				this->buildTree();
 
 			return this->root;
 		}
+		
+		
+		
+		/**
+		 * Shortcut for Parser::getValue()->getValue()
+		 *
+         * @return double result
+         */
+		double Parser::getValue() {
+			return this->getRoot()->getValue();
+		}
+		
+		
 
 
 		/**
