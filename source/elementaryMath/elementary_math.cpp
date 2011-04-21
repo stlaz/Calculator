@@ -6,7 +6,7 @@
  *  
  */
 
-#include <cmath>
+#include <maht.h>
 
 namespace CubeSoft {
 	
@@ -19,7 +19,7 @@ namespace CubeSoft {
 		 * @param b	Summand
 		 * @return Sum of a and b
 		 */
-		double OP_PLUS(double a, double b) 
+		double sum(double a, double b) 
 		{
 			return a+b;
 		}
@@ -29,7 +29,7 @@ namespace CubeSoft {
 		 * @param b Subtrahend
 		 * @return Difference a-b
 		 */
-		double OP_MINUS(double a, double b)
+		double differ(double a, double b)
 		{
 			return a-b;
 		}
@@ -39,7 +39,7 @@ namespace CubeSoft {
 		 * @param b multiplier
 		 * @return Multiplication
 		 */
-		double OP_MULTIPLY(double a, double b)
+		double multiply(double a, double b)
 		{
 			return a*b;
 		}
@@ -49,7 +49,7 @@ namespace CubeSoft {
 		 * @param b Divisor
 		 * @return Fractopm a/b
 		 */
-		double OP_DIVIDE(double a, double b)
+		double divide(double a, double b)
 		{
 			return a/b;
 		}
@@ -58,10 +58,10 @@ namespace CubeSoft {
 		 * @param a The input to count factorial of
 		 * @return Factorial of the input number
 		 */
-		unsigned long int OP_FACTORIAL(unsigned long int a)
+		unsigned long int factorial(unsigned long int a)
 		{
 			if(a>1)
-				return a*OP_FACTORIAL(a-1);
+				return a*factorial(a-1);
 			else return 1;
 		}
 
@@ -70,7 +70,7 @@ namespace CubeSoft {
 		 * @param b Exponent
 		 * @return Power
 		 */
-		double OP_POWER(double a, unsigned long b)
+		double power(double a, unsigned long b)
 		{
 			for(;b>1;b--)
 			a*=a;
@@ -94,7 +94,7 @@ namespace CubeSoft {
 		 * @param sigdig The number of signature digits to count the logarithm
 		 * @return The logarithm output
 		 */
-		double OP_LOGARITHM(double base, double x, double sigdig)
+		double logax(double base, double x, double sigdig)
 		{
 			if(x <= 0.0) {
 				return NAN;
