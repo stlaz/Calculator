@@ -22,9 +22,7 @@ calculator::calculator(QWidget *parent) :
    /**
     * Setting window flags.
     */
-   Qt::WindowFlags flags;
-   flags = Qt::Window | Qt::WindowMinimizeButtonHint;
-   setWindowFlags( flags );
+
 
    /**
     * Flags inicializations.
