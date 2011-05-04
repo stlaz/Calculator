@@ -1,5 +1,6 @@
 CPP=g++
 FLAGS=-Wall -Wextra -pedantic -g
+FILES=parser/*.h parser/*.cpp elementaryMath/*.cpp elementaryMath/*.h
 
-main: elementary_math.o main.o
-	$(CPP) $(FLAGS) -o main elementary_math.o main.o
+main: $(FILES)
+	$(CPP) $(FLAGS) -I elementaryMath/ $? -o $@

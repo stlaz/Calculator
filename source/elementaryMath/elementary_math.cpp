@@ -6,7 +6,7 @@
  *  
  */
 
-#include <maht.h>
+#include <math.h>
 
 namespace CubeSoft {
 	
