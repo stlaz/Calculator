@@ -1,13 +1,12 @@
-/* 
- * File:   Evaluator.cpp
- * Author: Nox
+/**
+ * @file   Evaluator.cpp
+ * @author Jiri Petruzelka
  * 
- * Created on 18. březen 2011, 20:20
+ * @brief	interface between parsed entities and math library
  */
 
 #include "Evaluator.h"
-#include "elementary_math.h"
-#include <math.h>
+#include "../elementaryMath/elementary_math.h"
 
 using namespace std;
 
@@ -15,14 +14,6 @@ namespace CubeSoft {
 
 	namespace Calculator {
 
-		int fact(int number) {
-			int temp;
-
-			if(number <= 1) return 1;
-
-			temp = number * fact(number - 1);
-			return temp;
-		}
 
 		class invalidOperatorException: public exception
 		{
@@ -32,18 +23,15 @@ namespace CubeSoft {
 		  }
 		} invalidOperatorException;
 
-		/**
-		 * @todo FINISH!!!
-         */
 
 		double Evaluator::evaluate(Item* value, ItemOperator* op) {
 			switch ( (eOperator)op->getValue() ){
 				case OP_UNARY_MINUS:
 					return value->getValue()*(-1);
 				case OP_LOGARITHM:
-					return log( value->getValue() );
+					return logax(LOG_BASE, value->getValue(), PRECISION );
 				case OP_FACTORIAL:
-					return fact( value->getValue() );
+					return (double)factorial( (double)value->getValue() );
 				default:
 					throw invalidOperatorException;
 			}
@@ -52,15 +40,15 @@ namespace CubeSoft {
 		double Evaluator::evaluate(Item* lvalue, ItemOperator* op, Item* rvalue) {
 			switch ( (eOperator)op->getValue() ){
 				case OP_PLUS:
-					return lvalue->getValue() + rvalue->getValue();
+					return sum(lvalue->getValue(), rvalue->getValue());
 				case OP_MINUS:
-					return lvalue->getValue() - rvalue->getValue();
+					return differ(lvalue->getValue(), rvalue->getValue());
 				case OP_DIVIDE:
-					return lvalue->getValue() / rvalue->getValue();
+					return divide(lvalue->getValue(), rvalue->getValue());
 				case OP_MULTIPLY:
-					return lvalue->getValue() * rvalue->getValue();
+					return multiply(lvalue->getValue(), rvalue->getValue());
 				case OP_POWER:
-					return pow( lvalue->getValue(), rvalue->getValue() );
+					return power( lvalue->getValue(), rvalue->getValue() );
 				default:
 					throw invalidOperatorException;
 			}
