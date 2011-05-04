@@ -1,3 +1,9 @@
+/*
+ * File: calculator.h
+ * Author: Michal Starigazda
+ *
+ */
+
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
@@ -17,7 +23,13 @@ public:
     calculator(QWidget *parent = 0);
 
 private slots:
-    void on_clear_2_clicked();
+    void on_logarithm_clicked();
+    void on_factorial_clicked();
+    void on_power_clicked();
+    void on_divide_clicked();
+    void on_multiply_clicked();
+    void on_minus_clicked();
+    void on_clearAll_clicked();
     void on_equal_clicked();
     void on_plus_clicked();
     void on_pi_clicked();
@@ -36,9 +48,14 @@ private slots:
     void digitClicked7();
     void digitClicked8();
     void digitClicked9();
+    void abortOperation();
 
 private:
     bool waitingForOperand;
+    bool waitingForResult;
+    bool unaryOperationAdded;
 };
 
 #endif // CALCULATOR_H
+
+/*** End of file calculator.h ***/

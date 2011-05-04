@@ -12,33 +12,22 @@ TEMPLATE = app
 
 SOURCES +=\
         calculator.cpp main.cpp \
-    Parser.cpp \
-    ItemOperator.cpp \
-    ItemLiteral.cpp \
-    ItemExpression.cpp \
-    Item.cpp \
-    Evaluator.cpp \
-    ../parser/Parser.cpp \
-    ../parser/ItemOperator.cpp \
-    ../parser/ItemLiteral.cpp \
-    ../parser/ItemExpression.cpp \
-    ../parser/Item.cpp \
-    ../parser/Evaluator.cpp
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Parser.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemOperator.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemLiteral.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemExpression.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Item.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Evaluator.cpp \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/elementary_math.cpp
 
-HEADERS  += calculator.h \ 
-    Parser.h \
-    ItemOperator.h \
-    ItemLiteral.h \
-    ItemExpression.h \
-    Item.h \
-    Evaluator.h \
-    enums.h \
-    ../parser/Parser.h \
-    ../parser/ItemOperator.h \
-    ../parser/ItemLiteral.h \
-    ../parser/ItemExpression.h \
-    ../parser/Item.h \
-    ../parser/Evaluator.h \
-    ../parser/enums.h
+HEADERS  += calculator.h \   
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Parser.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemOperator.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemLiteral.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/ItemExpression.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Item.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/Evaluator.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/enums.h \
+    D:/W7/VUT/2.semester/IVS/proj2/Calculator/source/parser/elementary_math.h
 
 FORMS    += calculator.ui

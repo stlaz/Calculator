@@ -272,8 +272,8 @@
   <widget class="QPushButton" name="pi">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>240</y>
+     <x>310</x>
+     <y>140</y>
      <width>51</width>
      <height>41</height>
     </rect>
@@ -286,9 +286,9 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>290</y>
+     <y>240</y>
      <width>111</width>
-     <height>41</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="text">
@@ -299,39 +299,13 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>140</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>log</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="sinus">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
      <y>190</y>
      <width>51</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>sin</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cosinus">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>240</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>cos</string>
+    <string>log</string>
    </property>
   </widget>
   <widget class="QPushButton" name="backspace">
@@ -360,7 +334,7 @@
     <string>Clear</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="clear_2">
+  <widget class="QPushButton" name="clearAll">
    <property name="geometry">
     <rect>
      <x>130</x>
