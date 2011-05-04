@@ -81,8 +81,8 @@ void calculator::digitClicked(int digitValue)
     }
 
     if (waitingForOperand) {
-        if (lineEdit->text() != "0"){
-            lineShow->setText(lineShow->text() + " " + lineEdit->text() + OP_Sign);}
+        //if (lineEdit->text() != "0"){
+        //    lineShow->setText(lineShow->text() + " " + lineEdit->text() + OP_Sign);}
         lineEdit->clear();
     waitingForOperand = false;
 
@@ -169,8 +169,9 @@ void calculator::on_plus_clicked()
         unaryOperationAdded = false;
     }
     //double operand = lineEdit->text().toDouble();
-    p->addInput(OP_PLUS);
-    OP_Sign = " + " ;
+    p->addInput(OP_PLUS);itemCnt++;
+    //OP_Sign = " + " ;
+    lineShow->setText(lineShow->text() + " " + lineEdit->text() + " + ");
     waitingForOperand=true;
     waitingForResult = true;
 }
@@ -200,6 +201,7 @@ void calculator::on_equal_clicked()
     waitingForResult = false;
 
     p = new Parser();
+    itemCnt = 0;
 }
 
 void calculator::on_clearAll_clicked()
@@ -228,8 +230,8 @@ void calculator::on_minus_clicked()
     }
     p->addInput(OP_MINUS);
     itemCnt++;
-    OP_Sign = " - " ;
-
+    //OP_Sign = " - " ;
+lineShow->setText(lineShow->text() + " " + lineEdit->text() + " - ");
     waitingForOperand=true;
     waitingForResult = true;
 }
@@ -249,7 +251,8 @@ void calculator::on_multiply_clicked()
     }
     p->addInput(OP_MULTIPLY);
     itemCnt++;
-    OP_Sign = " * " ;
+    //OP_Sign = " * " ;
+    lineShow->setText(lineShow->text() + " " + lineEdit->text() + " * ");
     waitingForOperand=true;
     waitingForResult = true;
 }
@@ -269,7 +272,8 @@ void calculator::on_divide_clicked()
     }
     p->addInput(OP_DIVIDE);
     itemCnt++;
-    OP_Sign = " / " ;
+    //OP_Sign = " / " ;
+    lineShow->setText(lineShow->text() + " " + lineEdit->text() + " / ");
     waitingForOperand=true;
     waitingForResult = true;
 }
@@ -289,7 +293,8 @@ void calculator::on_power_clicked()
     }
     p->addInput(OP_POWER);
     itemCnt++;
-    OP_Sign = "^" ;
+    //OP_Sign = "^" ;
+    lineShow->setText(lineShow->text() + " " + lineEdit->text() + "^");
     waitingForOperand = true;
     waitingForResult = true;
 }
