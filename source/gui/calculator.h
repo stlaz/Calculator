@@ -54,6 +54,7 @@ private:
     bool waitingForOperand;
     bool waitingForResult;
     bool unaryOperationAdded;
+    int itemCnt;
 };
 
 #endif // CALCULATOR_H

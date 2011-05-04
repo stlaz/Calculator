@@ -26,7 +26,9 @@ calculator::calculator(QWidget *parent) :
 
    waitingForOperand = true;
    waitingForResult = true;
-   unaryOperationAdded = true;
+   unaryOperationAdded = false;
+
+   itemCnt=0;
 
    lineEdit->setReadOnly(true);
    lineEdit->setAlignment(Qt::AlignRight);
@@ -59,17 +61,34 @@ calculator::calculator(QWidget *parent) :
 
 void calculator::digitClicked(int digitValue)
 {
+    if (unaryOperationAdded){
+        return;
+    }
+
+    if (!waitingForResult){
+        OP_Sign = "";
+        lineEdit->clear();
+
+        lineShow->clear();
+    }
+
     if (lineEdit->text() == "0" && digitValue == 0.0)
         return;
 
+    if (lineEdit->text() == "#"){
+            lineEdit->setText("0");
+            waitingForOperand = true;
+    }
+
     if (waitingForOperand) {
-        if (lineEdit->text() != "0" && lineEdit->text() != "####"){
+        if (lineEdit->text() != "0"){
             lineShow->setText(lineShow->text() + " " + lineEdit->text() + OP_Sign);}
         lineEdit->clear();
     waitingForOperand = false;
 
     waitingForResult = true;
     }
+
 
     lineEdit->setText(lineEdit->text() + QString::number(digitValue));
 }
@@ -138,31 +157,44 @@ void calculator::on_pi_clicked()
 
 void calculator::on_plus_clicked()
 {   
-    if (!waitingForResult){
-        lineShow->clear();
-    }
+    //if (!waitingForResult){
+    //    lineShow->clear();
+    //}
 
     if (!unaryOperationAdded){
         double operand = lineEdit->text().toDouble();
-        p->addInput(operand)->addInput(OP_PLUS);
+        p->addInput(operand);
+    }
+    else{
+        unaryOperationAdded = false;
     }
     //double operand = lineEdit->text().toDouble();
     p->addInput(OP_PLUS);
     OP_Sign = " + " ;
     waitingForOperand=true;
+    waitingForResult = true;
 }
 
 void calculator::on_equal_clicked()
 {
-   // if (!waitingForOperand){
+
+    if (itemCnt == 0){
+        waitingForOperand= true;
+        return;
+    }
+
+    //double result = p->getValue();
+
+    if (!unaryOperationAdded){
         double operand = lineEdit->text().toDouble();
         p->addInput(operand);
-   // }
-
-    double result = p->getValue();
+    }
+    else{
+        unaryOperationAdded = false;
+    }
 
     lineShow->setText(lineShow->text() + " " + lineEdit->text()+ " " + "=");
-    lineEdit->setText(QString::number(result));
+    lineEdit->setText(QString::number(p->getValue()));
 
     waitingForOperand= true;
     waitingForResult = false;
@@ -176,52 +208,90 @@ void calculator::on_clearAll_clicked()
     lineEdit->setText("0");
     lineShow->clear();
     p->clearInput();
+    itemCnt = 0;
 }
 
 
 
 void calculator::on_minus_clicked()
 {
-    if (!waitingForResult){
-        lineShow->clear();
+    //if (!waitingForResult){
+    //    lineShow->clear();
+    //}
+    if (!unaryOperationAdded){
+        double operand = lineEdit->text().toDouble();
+        p->addInput(operand);
+        itemCnt++;
     }
-    double operand = lineEdit->text().toDouble();
-    p->addInput(operand)->addInput(OP_MINUS);
+    else{
+        unaryOperationAdded = false;
+    }
+    p->addInput(OP_MINUS);
+    itemCnt++;
     OP_Sign = " - " ;
+
     waitingForOperand=true;
+    waitingForResult = true;
 }
 
 void calculator::on_multiply_clicked()
 {
-    if (!waitingForResult){
-        lineShow->clear();
+    //if (!waitingForResult){
+    //    lineShow->clear();
+    //}
+    if (!unaryOperationAdded){
+        double operand = lineEdit->text().toDouble();
+        p->addInput(operand);
+        itemCnt++;
     }
-    double operand = lineEdit->text().toDouble();
-    p->addInput(operand)->addInput(OP_MULTIPLY);
+    else{
+        unaryOperationAdded = false;
+    }
+    p->addInput(OP_MULTIPLY);
+    itemCnt++;
     OP_Sign = " * " ;
     waitingForOperand=true;
+    waitingForResult = true;
 }
 
 void calculator::on_divide_clicked()
 {
-    if (!waitingForResult){
-        lineShow->clear();
+    //if (!waitingForResult){
+    //    lineShow->clear();
+    //}
+    if (!unaryOperationAdded){
+        double operand = lineEdit->text().toDouble();
+        p->addInput(operand);
+        itemCnt++;
     }
-    double operand = lineEdit->text().toDouble();
-    p->addInput(operand)->addInput(OP_DIVIDE);
+    else{
+        unaryOperationAdded = false;
+    }
+    p->addInput(OP_DIVIDE);
+    itemCnt++;
     OP_Sign = " / " ;
     waitingForOperand=true;
+    waitingForResult = true;
 }
 
 void calculator::on_power_clicked()
 {
-    if (!waitingForResult){
-        lineShow->clear();
+    //if (!waitingForResult){
+    //    lineShow->clear();
+    //}
+    if (!unaryOperationAdded){
+        double operand = lineEdit->text().toDouble();
+        p->addInput(operand);
+        itemCnt++;
     }
-    double operand = lineEdit->text().toDouble();
-    p->addInput(operand)->addInput(OP_POWER);
-    OP_Sign = " ^ " ;
+    else{
+        unaryOperationAdded = false;
+    }
+    p->addInput(OP_POWER);
+    itemCnt++;
+    OP_Sign = "^" ;
     waitingForOperand = true;
+    waitingForResult = true;
 }
 
 void calculator::on_factorial_clicked()
@@ -229,20 +299,27 @@ void calculator::on_factorial_clicked()
     if (!waitingForResult){
         lineShow->clear();
     }
-    double operand = lineEdit->text().toDouble();
-    p->addInput(operand)->addInput(OP_FACTORIAL);
 
+    if (unaryOperationAdded){
+        p->addInput(OP_FACTORIAL);
+        itemCnt++;
+    }
+    else{
+        double operand = lineEdit->text().toDouble();
+        p->addInput(operand)->addInput(OP_FACTORIAL);
+        itemCnt+=2;
+    }
     lineEdit->setText(lineEdit->text() + "!");
    // lastOperation = "fact"
     waitingForOperand = true;
-
+    waitingForResult = true;
     unaryOperationAdded = true;
 }
 
 void calculator::abortOperation()
 {
     on_clear_clicked();
-    lineEdit->setText(tr("####"));
+    lineEdit->setText(tr("#"));
 }
 
 void calculator::on_logarithm_clicked()
@@ -253,13 +330,16 @@ void calculator::on_logarithm_clicked()
     double operand = lineEdit->text().toDouble();
     if (operand <= 0){
         abortOperation();
+        return;
     }
     else{
     p->addInput(OP_LOGARITHM)->addInput(operand);
-
-    lineShow->setText("log(" + lineEdit->text() + ")");}
+    itemCnt++;
+    lineEdit->setText("log(" + lineEdit->text() + ")");}
    // lastOperation = "fact"
-    waitingForOperand = true;
+    waitingForOperand = false;
+    waitingForResult = true;
+    unaryOperationAdded = true;
 }
 
 /*** End of file calculator.cpp ***/
