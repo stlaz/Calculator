@@ -1,6 +1,16 @@
-CPP=g++
-FLAGS=-Wall -Wextra -pedantic -g
-FILES=parser/*.h parser/*.cpp elementaryMath/*.cpp elementaryMath/*.h
+# FIT VUT Brno
+# IVS tymovy projekt
+#
+# 
 
-main: $(FILES)
-	$(CPP) $(FLAGS) -I elementaryMath/ $? -o $@
+NAME=Calculator
+MAKEFOLDER=./gui/Qt_project_sources
+MAKEFOLDER_BACK=../..
+
+.PHONY: clean
+
+all:
+	cd $(MAKEFOLDER);make && mv ./$(NAME) $(MAKEFOLDER_BACK)/$(NAME)
+
+clean:
+	cd $(MAKEFOLDER);make clean
