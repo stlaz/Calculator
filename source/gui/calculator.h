@@ -1,7 +1,8 @@
 /*
- * File: calculator.h
- * Author: Michal Starigazda
+ * @ile: calculator.h
+ * @author: Michal Starigazda
  *
+ * login: xstari01
  */
 
 #ifndef CALCULATOR_H
