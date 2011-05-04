@@ -9,8 +9,8 @@
 #define CALCULATOR_H
 
 #include "ui_calculator.h"
-#include "Parser.h"
-#include "enums.h"
+#include <Parser.h>
+#include <enums.h>
 
 namespace Ui {
     class calculator;
